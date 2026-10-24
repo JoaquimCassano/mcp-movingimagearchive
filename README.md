@@ -1,13 +1,13 @@
 # mcp-movingimagearchive
 
-MCP server for [Moving Image Archive](https://www.movingimagearchive.com): a searchable library of shots cut from public-domain archival films, all free to reuse. Built with the blessing of its creator, [Cova](https://x.com/covacut).
+MCP server for [Moving Image Archive](https://www.movingimagearchive.com): a searchable library of shots cut from public-domain archival films, all free to reuse. Inspired by a reply from the site's creator, [Cova](https://x.com/covacut), welcoming the idea of an MCP server for it. This is an unofficial project.
 
 ## Tools
 
 | Tool | What it does | Site equivalent |
 |---|---|---|
 | `search_clips` | Semantic shot search by visual description, with color / aspect ratio / year filters. Empty query browses every shot. | Search box + Filter |
-| `list_sources` | All source films, sorted featured / recent / A–Z, plus archive totals | Gallery |
+| `list_sources` | All source films, sorted featured / recent / by title (`direction: "asc"` for A–Z; the default `desc` gives Z–A), plus archive totals | Gallery |
 | `get_source` | One film: synopsis, provenance & rights, full-film URL, shot list with per-shot URLs | `/sources/<slug>` |
 | `list_collections` | Curated themed collections | Collections |
 | `get_collection` | Shots in one collection | `/collection/<slug>` |
@@ -17,7 +17,7 @@ Every shot result includes `clipDownloadUrl` (the shot MP4) and `sourceDownloadU
 
 ## Setup
 
-Requires Node ≥ 22.18. `ffmpeg` on PATH is only needed for range downloads.
+Requires Node ≥ 20 (≥ 22.18 only to run `pnpm test`, which runs the `.ts` files directly). `ffmpeg` on PATH is only needed for range downloads.
 
 ```bash
 git clone https://github.com/JoaquimCassano/mcp-movingimagearchive.git
@@ -42,6 +42,8 @@ Claude Desktop / other clients:
 ```
 
 ## How it talks to the site
+
+These are the site's own endpoints and page sizes. The MCP tools return smaller pages (see each tool's `limit`) and paginate with `offset`/`nextOffset`.
 
 - `POST /api/search` `{query, color, aspectRatio, yearMin?, yearMax?, offset}` — shot search (24/page)
 - `GET /api/clips?color&aspectRatio&offset&yearMin&yearMax` — browse shots (100/page)

@@ -15,7 +15,7 @@
     "test": "node --test test/*.test.ts"
   },
   "engines": {
-    "node": ">=22.18"
+    "node": ">=20"
   },
   "license": "MIT",
   "repository": "github:JoaquimCassano/mcp-movingimagearchive",
