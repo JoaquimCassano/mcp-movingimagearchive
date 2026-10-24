@@ -1,0 +1,30 @@
+{
+  "name": "mcp-movingimagearchive",
+  "version": "0.1.0",
+  "description": "MCP server for the Moving Image Archive (movingimagearchive.com): search, browse and download public-domain archival film shots.",
+  "type": "module",
+  "bin": {
+    "mcp-movingimagearchive": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "node --test test/*.test.ts"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "license": "MIT",
+  "repository": "github:JoaquimCassano/mcp-movingimagearchive",
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
+  }
+}
